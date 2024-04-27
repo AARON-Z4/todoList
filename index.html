@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo list</title>
+    <style>
+        * {
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 10px;
+        }
+        .errorMsg{
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>TODO - List</h1>
+    <input type="text" name="" id="userEntry">
+    <button class="button">Submit</button>
+    <p class="errorMsg"></p>
+    <div class="ListItems">
+        <ul class="Lists">
+
+        </ul>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () { 
+        document.querySelector('.button').addEventListener('click', function (e) {
+            if (document.querySelector('#userEntry').value != "") {
+                document.querySelector('.errorMsg').innerText = ""
+                var entryVal = "";
+                entryVal = document.querySelector('#userEntry').value;
+                var listVal = `<li class="listValue"> ${entryVal}</li>`
+                document.querySelector('.Lists').innerHTML += listVal
+                document.querySelector('#userEntry').value = ""
+                listValueRender()
+            }else{
+                document.querySelector('.errorMsg').innerText = "this field cannot be empty"
+            }
+        })
+    })
+    function listValueRender() {
+        document.querySelectorAll('.listValue').forEach(function (ele, index) {
+            ele.addEventListener('click', function () {
+                this.remove()
+            })
+        })
+    }
+</script>
+
+</html>
